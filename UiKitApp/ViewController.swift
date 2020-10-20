@@ -11,10 +11,10 @@ class ViewController: UIViewController {
     
     @IBOutlet var textLable: UILabel!
     @IBOutlet var segmentControl: UISegmentedControl!
-    
     @IBOutlet var slider: UISlider!
-    
     @IBOutlet var textFiled: UITextField!
+    
+    @IBOutlet var datePicker: UIDatePicker!
     override func viewDidLoad() {
         super.viewDidLoad()
         textLable.font = UIFont.boldSystemFont(ofSize: 35)
@@ -28,6 +28,7 @@ class ViewController: UIViewController {
         slider.maximumTrackTintColor = .purple
         slider.thumbTintColor = .yellow
         textLable.text = String(slider.value)
+        datePicker.locale = Locale(identifier: "ru_RU")
     }
     
     @IBAction func segmentedControlAcnion() {
@@ -54,14 +55,34 @@ class ViewController: UIViewController {
     @IBAction func doneButtonPress() {
         guard let inputName = textFiled.text, !inputName.isEmpty else {
             print("Text filed is empty")
+            showAlert(with: "Text filed is empty", and: "Please inter you name")
             return
         }
         if let _ = Double(inputName) {
+            showAlert(with: "Wrong Format", and: "Please inter you name")
             print("Wrong Format")
             return
         }
         textLable.text = inputName
     }
+    
+    @IBAction func datePikerAction() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.locale = Locale(identifier: "ru_RU")
+        textLable.text = dateFormatter.string(from: datePicker.date)
+    }
+    
 }
-
+// MARK: - Alert Controller
+extension ViewController {
+    private func showAlert(with title: String, and message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAcnion = UIAlertAction(title: "OK", style: .default) { _ in
+            self.textFiled.text = ""
+        }
+        alert.addAction(okAcnion)
+        present(alert, animated: true)
+    }
+}
 

@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="a67-Or-w3z">
-                                <rect key="frame" x="40" y="40" width="295" height="305.5"/>
+                                <rect key="frame" x="40" y="40" width="295" height="561.5"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="LQT-V8-cbG">
                                         <rect key="frame" x="0.0" y="0.0" width="295" height="32"/>
@@ -56,6 +56,12 @@
                                             <action selector="doneButtonPress" destination="BYZ-38-t0r" eventType="touchUpInside" id="PAI-lu-Iid"/>
                                         </connections>
                                     </button>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="1zw-oy-7iX">
+                                        <rect key="frame" x="0.0" y="345" width="295" height="216"/>
+                                        <connections>
+                                            <action selector="datePikerAction" destination="BYZ-38-t0r" eventType="valueChanged" id="wMb-c6-r1y"/>
+                                        </connections>
+                                    </datePicker>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -68,6 +74,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="datePicker" destination="1zw-oy-7iX" id="Ifm-ax-p0S"/>
                         <outlet property="segmentControl" destination="LQT-V8-cbG" id="0z7-Pt-SB7"/>
                         <outlet property="slider" destination="1W0-dC-PbN" id="IcD-DR-azg"/>
                         <outlet property="textFiled" destination="7Ta-rc-ROq" id="CWJ-nZ-7jg"/>
