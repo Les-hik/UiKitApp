@@ -11,13 +11,23 @@ class ViewController: UIViewController {
     
     @IBOutlet var textLable: UILabel!
     @IBOutlet var segmentControl: UISegmentedControl!
+    
+    @IBOutlet var slider: UISlider!
+    
+    @IBOutlet var textFiled: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        textLable.text = "text"
         textLable.font = UIFont.boldSystemFont(ofSize: 35)
         textLable.textAlignment = .center
         textLable.numberOfLines = 4
         segmentControl.insertSegment(withTitle: "Third", at: 2, animated: false)
+        slider.value = 1
+        slider.minimumValue = 0
+        slider.maximumValue = 1
+        slider.minimumTrackTintColor = .red
+        slider.maximumTrackTintColor = .purple
+        slider.thumbTintColor = .yellow
+        textLable.text = String(slider.value)
     }
     
     @IBAction func segmentedControlAcnion() {
@@ -35,5 +45,23 @@ class ViewController: UIViewController {
         default: break
         }
     }
+    
+    @IBAction func sliderAction() {
+        textLable.text = String(slider.value)
+        view.backgroundColor = view.backgroundColor?.withAlphaComponent(CGFloat(slider.value))
+    }
+    
+    @IBAction func doneButtonPress() {
+        guard let inputName = textFiled.text, !inputName.isEmpty else {
+            print("Text filed is empty")
+            return
+        }
+        if let _ = Double(inputName) {
+            print("Wrong Format")
+            return
+        }
+        textLable.text = inputName
+    }
 }
+
 
